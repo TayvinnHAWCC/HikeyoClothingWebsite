@@ -3,6 +3,8 @@ body {
     font-family: monospace;
 }
 
+/* Navigation Bar */
+
 header {
   position: fixed;
   top: 0;
@@ -50,6 +52,8 @@ header {
   background-color: gray;
 }
 
+/* Home Page */
+
 body.home {
   display: flex;
   justify-content: center;
@@ -74,24 +78,8 @@ body.home {
   color: black;
 }
 
-.fadeh1 {
-  opacity: 0;
-  animation: fadeInUp 1s ease-out 1.5s forwards; 
-}
-
-.fadeh2 {
-  opacity: 0;
-  animation: fadeInUp 1s ease-out 2.2s forwards;
-}
-
-@keyframes fadeInp {
-  to {
-    opacity: 1;
-  }
-}
-
-
 /* Products */
+
 .product-grid {
   display: flex;
   flex-wrap: wrap;
@@ -112,7 +100,6 @@ body.home {
   overflow: hidden;
   transition: transform 0.2s ease;
 }
-
 
 .product-card:hover {
   transform: scale(1.02);
@@ -155,6 +142,8 @@ body.home {
   cursor: not-allowed;
 }
 
+/* Product Imgs */
+
 .punpun-shirt {
   background-image: url("../Assets/Products/Punpunshirt.JPG");
 }
@@ -167,6 +156,8 @@ body.home {
   background-color: black;
   color: white;
 }
+
+/* products - cart abilities */
 
 .add-to-cart {
   margin-top: 10px;
@@ -184,6 +175,8 @@ body.home {
   color: #555;
   cursor: not-allowed;
 }
+
+/* Products - quantity selection */
 
 .qty-wrapper {
   margin-top: 10px;
@@ -203,6 +196,7 @@ body.home {
 }
 
 /* Shopping Cart */
+
 .cart-container {
   max-width: 800px;
   margin: 100px auto;
@@ -259,6 +253,7 @@ body.home {
 }
 
 /* Login */
+
 .auth-container {
   max-width: 400px;
   margin: 120px auto;
@@ -311,20 +306,52 @@ body.home {
   height: 250px;
   object-fit: cover;
   border-radius: 6px;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.about-images img:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.about-images img:nth-child(2) {
+  animation-delay: 0.6s;
 }
 
 .about-bio {
-  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
   min-width: 280px;
   max-width: 600px;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 1s;
 }
 
 .about-bio h3 {
   font-size: 2rem;
-  margin-bottom: 10px;
+  margin: 0;
+}
+
+.about-bio h4 {
+  margin: 0;
+  font-size: 1.5rem;
 }
 
 .about-bio p {
   font-size: 1rem;
   line-height: 1.6;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
