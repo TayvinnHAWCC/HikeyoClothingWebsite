@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/style.css">
-    <title>Hikeyo | Shopping Cart</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>Hikeyo | Shopping Cart</title>
 </head>
-    <body>
-    <header>
-    <div class="logo">HIKEYO | SHOPPING CART</div>
+<body>
+  <header>
+    <div class="logo">HIKEYO | CART</div>
     <nav class="NaviBar">
-        <a href="index.html">Homepage</a>
-        <a href="product.html">Products</a>
-        <a href="login.html">Login/Account</a>
-        <a href="shopping-cart.html">Shopping Cart</a>
-        <a href="about.html">About Us</a>
+      <a href="index.html">Homepage</a>
+      <a href="product.html">Products</a>
+      <a href="login.html">Login/Account</a>
+      <a href="shopping-cart.html">Shopping Cart</a>
+      <a href="about.html">About Us</a>
     </nav>
-    </header>
-    
-    </body>
+  </header>
+
+  <main class="cart-container">
+    <h2>Your Cart</h2>
+    <div id="cartItems" class="cart-items"></div>
+    <button class="checkout-btn">Checkout</button>
+  </main>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+</body>
 </html>

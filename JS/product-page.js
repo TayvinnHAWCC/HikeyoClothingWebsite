@@ -1,5 +1,7 @@
 const grid = document.getElementById("productGrid");
-const cart = JSON.parse(localStorage.getItem("cart")) || [];
+const currentUser = localStorage.getItem("currentUser");
+const cartKey = currentUser ? `cart_${currentUser}` : "cart";
+const cart = JSON.parse(localStorage.getItem(cartKey)) || [];
 
 products.forEach(product => {
   const card = document.createElement("div");
@@ -48,7 +50,6 @@ products.forEach(product => {
     sizeOptions.appendChild(btn);
   });
 
-  // Create quantity input
   const qtyWrapper = document.createElement("div");
   qtyWrapper.className = "qty-wrapper";
 
@@ -62,14 +63,6 @@ products.forEach(product => {
   qtyInput.disabled = true;
   qtyInput.className = "qty-input";
 
-  qtyInput.addEventListener("input", () => {
-    const value = parseInt(qtyInput.value);
-    if (value < 1) qtyInput.value = 1;
-    if (selectedVariant && value > selectedVariant.stock) {
-      qtyInput.value = selectedVariant.stock;
-    }
-  });
-
   qtyWrapper.appendChild(qtyLabel);
   qtyWrapper.appendChild(qtyInput);
 
@@ -82,16 +75,11 @@ products.forEach(product => {
     if (!selectedVariant) return;
 
     const quantity = parseInt(qtyInput.value);
-    if (quantity > selectedVariant.stock) {
-      alert("Not enough in stock!");
-      return;
-    }
-
     for (let i = 0; i < quantity; i++) {
       cart.push(selectedVariant.id);
     }
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem(cartKey, JSON.stringify(cart));
     alert(`${product.name} (${selectedVariant.size}) x${quantity} added to cart.`);
   });
 
