@@ -3,6 +3,7 @@ const currentUser = localStorage.getItem("currentUser");
 const cartKey = currentUser ? `cart_${currentUser}` : "cart";
 const cart = JSON.parse(localStorage.getItem(cartKey)) || [];
 
+
 const itemMap = {};
 cart.forEach(id => {
   itemMap[id] = (itemMap[id] || 0) + 1;
@@ -15,6 +16,13 @@ const allVariants = products.flatMap(p =>
     price: p.price
   }))
 );
+
+Object.keys(itemMap).forEach(id => {
+  const variant = allVariants.find(v => v.id === id);
+  if (variant && itemMap[id] > variant.stock) {
+    itemMap[id] = variant.stock;
+  }
+});
 
 function renderCart() {
   cartItemsContainer.innerHTML = "";
@@ -34,9 +42,16 @@ function renderCart() {
     qtyControl.type = "number";
     qtyControl.value = quantity;
     qtyControl.min = 1;
+    qtyControl.max = variant.stock; 
     qtyControl.className = "cart-qty";
+
     qtyControl.addEventListener("change", () => {
       const newQty = parseInt(qtyControl.value);
+      if (newQty > variant.stock) {
+        alert(`Only ${variant.stock} in stock.`);
+        qtyControl.value = variant.stock;
+        return;
+      }
       itemMap[variantId] = newQty;
       updateLocalStorage();
       renderCart();
@@ -69,7 +84,7 @@ function updateLocalStorage() {
 }
 
 function checkout() {
-  if (cart.length === 0) {
+  if (Object.keys(itemMap).length === 0) {
     alert("Your cart is empty.");
     return;
   }
