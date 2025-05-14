@@ -2,7 +2,6 @@ const form = document.getElementById("authForm");
 const logoutBtn = document.getElementById("logoutBtn");
 const message = document.getElementById("authMessage");
 
-// Check if logged in
 function checkAuth() {
   const currentUser = localStorage.getItem("currentUser");
   if (currentUser) {
@@ -14,7 +13,6 @@ function checkAuth() {
 
 checkAuth();
 
-// Log in or register
 form.addEventListener("submit", e => {
   e.preventDefault();
   const email = document.getElementById("email").value.trim().toLowerCase();
@@ -23,7 +21,6 @@ form.addEventListener("submit", e => {
   const users = JSON.parse(localStorage.getItem("users")) || {};
 
   if (users[email]) {
-    // Log in
     if (users[email] === password) {
       localStorage.setItem("currentUser", email);
       message.textContent = `Welcome back, ${email}`;
@@ -33,7 +30,6 @@ form.addEventListener("submit", e => {
       message.textContent = "Incorrect password.";
     }
   } else {
-    // Register
     users[email] = password;
     localStorage.setItem("users", JSON.stringify(users));
     localStorage.setItem("currentUser", email);
@@ -43,7 +39,6 @@ form.addEventListener("submit", e => {
   }
 });
 
-// Log out
 logoutBtn.addEventListener("click", () => {
   localStorage.removeItem("currentUser");
   message.textContent = "Logged out.";

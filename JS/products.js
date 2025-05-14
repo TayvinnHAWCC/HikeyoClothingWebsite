@@ -6,7 +6,7 @@ const products = [
     variants: [
       { id: "punpun-s", size: "S", stock: 2 },
       { id: "punpun-m", size: "M", stock: 0 },
-      { id: "punpun-l", size: "L", stock: 3 }
+      { id: "punpun-l", size: "L", stock: 0 }
     ]
   },
   {
